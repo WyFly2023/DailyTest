@@ -1,0 +1,10 @@
+# ninja log v5
+5	90	7175912036769183	CMakeFiles/AddressBook.dir/Contacts.c.obj	7eb640c35abe19a4
+2	61	7175912508254675	CMakeFiles/AddressBook.dir/ContactTest.c.obj	6e8199fdc17d50f5
+61	174	7175912509360305	AddressBook.exe	8a8fd722fe208349
+1	66	7175966373991669	CMakeFiles/AddressBook.dir/ContactTest.c.obj	6582823aca886cd0
+6	81	7175966374144394	CMakeFiles/AddressBook.dir/Contacts.c.obj	e7fe06bba043c890
+81	169	7175966374987264	AddressBook.exe	8a8fd722fe208349
+9	191	7182175833289120	CMakeFiles/AddressBook.dir/ContactTest.c.obj	6582823aca886cd0
+2	191	7182175833289120	CMakeFiles/AddressBook.dir/Contacts.c.obj	e7fe06bba043c890
+191	393	7182175835280744	AddressBook.exe	8a8fd722fe208349

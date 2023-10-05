@@ -22,17 +22,21 @@ int FindByName(Contacts *c, char *name)
 void InitContacts(Contacts *c)
 {
     assert(c);
-    memset(c->data, 0, sizeof(c->data));
     c->size = 0;
+    c->capacity = maxSize;
+    c->data = malloc(sizeof(PeopleInfo)*c->capacity);
+    if(c->data == NULL)
+        return;
 }
 
 void AddContact(Contacts *c)
 {
     assert(c);
-    if(c->size == MaxSize)
+    if(c->size == c->capacity)
     {
-        printf("通讯录已满\n");
-        return;
+        PeopleInfo *tmp = realloc(c->data,sizeof(Contacts) * c->capacity * 2);
+        if(tmp != NULL)
+            c->data = tmp;
     }
     printf("姓名：\n");
     scanf("%s",c->data[c->size].name);
@@ -135,4 +139,12 @@ void DelContact(Contacts * c)
 
     c->size--;
     printf("删除成功\n");
+}
+
+void DestroyContact(Contacts * c)
+{
+    assert(c);
+    free(c->data);
+    c->data = NULL;
+    c->size = c->capacity = 0;
 }

@@ -15,9 +15,9 @@
 
 #endif //TEST_CONTACT_H
 
-#define MaxSize 50
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
 #include <string.h>
 
 //定义枚举常量代表用户的选择
@@ -31,18 +31,21 @@ enum
     SHOW
 };
 
-typedef struct Contact
+typedef struct PeopleInfo
 {
     int age;
     char name[20];
     char addr[30];
     char tele[30];
-}Contact;
+}PeopleInfo;
+
+#define maxSize 10
 
 typedef struct Contacts
 {
-    Contact data[MaxSize];
+    PeopleInfo * data;
     int size;
+    int capacity;
 }Contacts;
 
 //初始化通讯录
@@ -57,3 +60,5 @@ void SearchContact(Contacts *c);
 void ModifyContact(Contacts* c);
 //删除联系人
 void DelContact(Contacts * c);
+//销毁通讯录
+void DestroyContact(Contacts * c);

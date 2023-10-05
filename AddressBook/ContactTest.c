@@ -22,6 +22,7 @@ int main()
         switch(input)
         {
             case EXIT:
+                DestroyContact(&c);
                 printf("程序退出\n");
                 break;
             case ADD:
