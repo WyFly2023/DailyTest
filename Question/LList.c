@@ -20,6 +20,7 @@ void printList(LNode *L)
     printf("NULL\n");
 }
 
+// 申请结点
 LNode *ApplyNode(ELemtype e)
 {
     LNode *newnode = (LNode *)malloc(sizeof(LNode));
@@ -153,6 +154,25 @@ void PosAfterInsert(LNode **pos, ELemtype e)
     (*pos)->next = newnode;
 }
 
+// 删除指定元素
+void DeleteElemtype(LNode **L, ELemtype k)
+{
+    LNode *cur = *L;
+    LNode *pos = searchList(*L, k);
+    if (pos == *L)
+        DeleteFront(&(*L));
+    else
+    {
+        while (cur->next != pos)
+        {
+            cur = cur->next;
+        }
+        cur->next = pos->next;
+        free(pos);
+        pos = NULL;
+    }
+}
+
 // 链表的销毁
 void DestroyList(LNode **L)
 {
@@ -195,7 +215,7 @@ int main()
     LNode *pos2 = searchList(L, 4);
     if (pos != NULL)
         PosAfterInsert(&pos2, 999);
-
+    DeleteElemtype(&L, 999);
     printList(L);
 
     DestroyList(&L);
