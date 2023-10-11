@@ -28,7 +28,8 @@ enum
     DEL,
     SEA,
     MOD,
-    SHOW
+    SHOW,
+    Save
 };
 
 typedef struct PeopleInfo
@@ -39,7 +40,7 @@ typedef struct PeopleInfo
     char tele[30];
 }PeopleInfo;
 
-#define maxSize 10
+#define maxSize 50
 
 typedef struct Contacts
 {
@@ -62,3 +63,7 @@ void ModifyContact(Contacts* c);
 void DelContact(Contacts * c);
 //销毁通讯录
 void DestroyContact(Contacts * c);
+//保存联系人信息到本地文件
+void saveContactsToFile(Contacts* c);
+//加载联系人
+void loadContactsFromFile(Contacts* c);

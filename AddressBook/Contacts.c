@@ -54,7 +54,7 @@ void AddContact(Contacts *c)
 void ShowContacts(Contacts* c)
 {
     assert(c);
-    printf("%-15s%-5s%-18s%-30s\n",
+    printf("%-15s%-10s%-18s%-30s\n",
            "姓名", "年龄", "电话号码", "地址");
     int i = 0;
     for(i = 0; i < c->size; i++)
@@ -147,4 +147,41 @@ void DestroyContact(Contacts * c)
     free(c->data);
     c->data = NULL;
     c->size = c->capacity = 0;
+}
+
+void saveContactsToFile(Contacts* c)
+{
+    FILE* file = fopen("contacts.txt", "a");
+    if (file == NULL) {
+        printf("Unable to open file for writing.\n");
+        return;
+    }
+
+    for (int i = 0; i < c->size; i++) {
+        fprintf(file, "%15s %5d %18s %30s\n",
+                c->data[i].name, c->data[i].age, c->data[i].tele, c->data[i].addr);
+    }
+
+    fclose(file);
+    printf("Contacts saved to file.\n");
+}
+
+void loadContactsFromFile(Contacts* c)
+{
+    FILE* file = fopen("contacts.txt", "r");
+    if (file == NULL) {
+        printf("Unable to open file for reading.\n");
+        return;
+    }
+    int count = 0;
+    for (count = 0; count < c->capacity; count++)
+    {
+        if (fscanf(file,  "%15s %5d %18s %30s\n",
+                   c->data[count].name, &c->data[count].age,
+                   c->data[count].tele, c->data[count].addr) == EOF)
+            break;  // 读取到文件末尾时退出循环
+    }
+    c->size = count;
+    fclose(file);
+    printf("Contacts loaded from file.\n");
 }
