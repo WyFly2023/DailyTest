@@ -13,7 +13,7 @@ int main()
 {
     Contacts c;
     InitContacts(&c);
-    loadContactsFromFile(&c);
+
     int input = 0;
     do
     {

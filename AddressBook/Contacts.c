@@ -27,17 +27,34 @@ void InitContacts(Contacts *c)
     c->data = malloc(sizeof(PeopleInfo)*c->capacity);
     if(c->data == NULL)
         return;
+    loadContactsFromFile(c);
+}
+
+//增容
+void AddCapacity(Contacts* c)
+{
+    if (c->size == c->capacity)
+    {
+        PeopleInfo *tmp = realloc(c->data,sizeof(Contacts) * c->capacity * 2);
+        if (tmp != NULL)
+        {
+            c->data = tmp;
+            c->capacity += maxSize;
+            printf("增容成功\n");
+        }
+        else
+        {
+            perror("AddContact->realloc");
+            return;
+        }
+    }
 }
 
 void AddContact(Contacts *c)
 {
     assert(c);
-    if(c->size == c->capacity)
-    {
-        PeopleInfo *tmp = realloc(c->data,sizeof(Contacts) * c->capacity * 2);
-        if(tmp != NULL)
-            c->data = tmp;
-    }
+    AddCapacity(c);
+
     printf("姓名：\n");
     scanf("%s",c->data[c->size].name);
     printf("年龄：\n");
@@ -149,18 +166,19 @@ void DestroyContact(Contacts * c)
     c->size = c->capacity = 0;
 }
 
+
 void saveContactsToFile(Contacts* c)
 {
-    FILE* file = fopen("contacts.txt", "a");
-    if (file == NULL) {
-        printf("Unable to open file for writing.\n");
+    FILE* file = fopen("contacts.txt", "wb");
+    if (file == NULL)
+    {
+        perror(saveContactsToFile);
         return;
     }
 
-    for (int i = 0; i < c->size; i++) {
-        fprintf(file, "%15s %5d %18s %30s\n",
-                c->data[i].name, c->data[i].age, c->data[i].tele, c->data[i].addr);
-    }
+    //将信息写到文件
+    for (int i = 0; i < c->size; i++)
+       fwrite(c->data + i,sizeof(PeopleInfo),1,file);
 
     fclose(file);
     printf("Contacts saved to file.\n");
@@ -168,20 +186,21 @@ void saveContactsToFile(Contacts* c)
 
 void loadContactsFromFile(Contacts* c)
 {
-    FILE* file = fopen("contacts.txt", "r");
+    FILE* file = fopen("contacts.txt", "rb");
     if (file == NULL) {
-        printf("Unable to open file for reading.\n");
+        perror(loadContactsFromFile);
         return;
     }
-    int count = 0;
-    for (count = 0; count < c->capacity; count++)
+
+    //读
+    PeopleInfo tmp = { 0 };
+
+    while(fread(&tmp,sizeof(PeopleInfo),1,file))
     {
-        if (fscanf(file,  "%15s %5d %18s %30s\n",
-                   c->data[count].name, &c->data[count].age,
-                   c->data[count].tele, c->data[count].addr) == EOF)
-            break;  // 读取到文件末尾时退出循环
+        AddCapacity(c);
+        c->data[c->size] = tmp;
+        c->size++;
     }
-    c->size = count;
     fclose(file);
     printf("Contacts loaded from file.\n");
 }
