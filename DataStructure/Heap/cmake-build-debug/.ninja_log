@@ -1,0 +1,7 @@
+# ninja log v5
+1	123	7223675118645529	build.ninja	7fd6dc7eaff0e1a9
+1	93	7223675120169524	CMakeFiles/Heap.dir/Test.c.obj	d9d75554ade39e3a
+1	73	7223675793627417	CMakeFiles/Heap.dir/heap.c.obj	a1c34b278ee34a25
+73	182	7223675794683565	Heap.exe	9cbdbf444acb8755
+2	70	7223676169574246	CMakeFiles/Heap.dir/Test.c.obj	d9d75554ade39e3a
+70	162	7223676170458692	Heap.exe	9cbdbf444acb8755
