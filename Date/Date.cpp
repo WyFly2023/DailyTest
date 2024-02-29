@@ -8,16 +8,14 @@ Date::Date(int year, int month, int day) {
     _year = year;
     _month = month;
     _day = day;
+    if (!checkDate())
+        cout << year << "/" << month << "/" << day << "：非法日期" << endl;
 }
 
 Date::Date(const Date &d) {
     _year = d._year;
     _month = d._month;
     _day = d._day;
-}
-
-void Date::Print() const {
-    cout << _year << "/" << _month << "/" << _day << endl;
 }
 
 Date &Date::operator=(const Date &d) {
@@ -131,31 +129,55 @@ Date Date::operator++(int) {
 }
 
 //--day
-Date& Date::operator--(){
-    *this-=1;
+Date &Date::operator--() {
+    *this -= 1;
     return *this;
 }
+
 //day--
-Date Date::operator--(int){
+Date Date::operator--(int) {
     Date tmp = *this;
     *this -= 1;
 
     return tmp;
 }
 
-int Date::operator-(const Date &d){
+int Date::operator-(const Date &d) {
     Date big = *this;
     Date small = d;
     int flag = 1;
-    if(big < small){
+    if (big < small) {
         flag = -1;
         big = d;
         small = *this;
     }
     int n = 0;
-    while(big != small){
+    while (big != small) {
         small++;
         n++;
     }
-    return n* flag;
+    return n * flag;
+}
+
+bool Date::checkDate() {
+    //这里假设年份从0开始
+    if (_year < 0 || _month < 1 || _month > 12 || _day > getMonthDay(_year, _month))
+        return false;
+    return true;
+}
+
+ostream &operator<<(ostream &_cout, const Date &d) {
+    _cout << d._year << "/" << d._month << "/" << d._day << endl;
+    return _cout;
+}
+
+istream &operator>>(istream &_cin, Date &d) {
+    while (true) {
+        _cin >> d._year >> d._month >> d._day;
+        if (!d.checkDate())
+            cout << "日期非法，请重新输入：";
+        else
+            break;
+    }
+    return _cin;
 }

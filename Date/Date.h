@@ -15,7 +15,6 @@ public:
 
     Date(const Date &d);
 
-    void Print() const;
 
     Date &operator=(const Date &d);
 
@@ -52,18 +51,27 @@ public:
     Date operator-(int day);
 
     Date &operator-=(int day);
+
     //++day
     Date &operator++();
+
     //day++
     Date operator++(int);
+
     //--day
     Date &operator--();
+
     //day--
     Date operator--(int);
 
     //日期减日期 d - d
     int operator-(const Date &d);
 
+    bool checkDate();
+
+    friend ostream &operator<<(ostream &_cout, const Date &d);
+
+    friend istream &operator>>(istream &_cin, Date &d);
 
 private:
     int _year;
@@ -71,5 +79,8 @@ private:
     int _day;
 };
 
+ostream &operator<<(ostream &_cout, const Date &d);
+
+istream &operator>>(istream &_cin, Date &d);
 
 #endif //DATE_DATE_H
