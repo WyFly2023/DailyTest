@@ -65,7 +65,6 @@ bool Date::operator!=(Date &d) const {
     return !(*this == d);
 }
 
-//+和+=完整实现一个就行
 Date &Date::operator+=(int day) {
     _day += day;
     while (_day > getMonthDay(_year, _month)) {
@@ -95,4 +94,68 @@ Date Date::operator+(int day) {
     //可以使用已经实现的 +=
     tmp += day;
     return tmp;
+}
+
+Date Date::operator-(int day) {
+    Date tmp = *this;
+    tmp -= day;
+
+    return tmp;
+}
+
+Date &Date::operator-=(int day) {
+    _day -= day;
+    while (_day <= 0) {
+        _month--;
+        if (_month == 0) {
+            _year--;
+            _month = 12;
+        }
+        _day += getMonthDay(_year, _month);
+    }
+    return *this;
+}
+
+//++day
+Date &Date::operator++() {
+    *this += 1;
+    return *this;
+}
+
+//day++
+Date Date::operator++(int) {
+    Date tmp = *this;
+    *this += 1;
+
+    return tmp;
+}
+
+//--day
+Date& Date::operator--(){
+    *this-=1;
+    return *this;
+}
+//day--
+Date Date::operator--(int){
+    Date tmp = *this;
+    *this -= 1;
+
+    return tmp;
+}
+
+int Date::operator-(const Date &d){
+    Date big = *this;
+    Date small = d;
+    int flag = 1;
+    if(big < small){
+        flag = -1;
+        big = d;
+        small = *this;
+    }
+    int n = 0;
+    while(big != small){
+        small++;
+        n++;
+    }
+    return n* flag;
 }

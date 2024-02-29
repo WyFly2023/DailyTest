@@ -49,6 +49,22 @@ public:
 
     Date operator+(int day);
 
+    Date operator-(int day);
+
+    Date &operator-=(int day);
+    //++day
+    Date &operator++();
+    //day++
+    Date operator++(int);
+    //--day
+    Date &operator--();
+    //day--
+    Date operator--(int);
+
+    //日期减日期 d - d
+    int operator-(const Date &d);
+
+
 private:
     int _year;
     int _month;
