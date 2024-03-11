@@ -1,0 +1,22 @@
+# ninja log v5
+1	458	7318505841019556	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+5	462	7318505841024614	CMakeFiles/Mystring.dir/myString.cpp.obj	d61e5345a47ed9de
+3	396	7318506208588956	CMakeFiles/Mystring.dir/myString.cpp.obj	d61e5345a47ed9de
+3	506	7318507254445576	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+9	507	7318507254455570	CMakeFiles/Mystring.dir/myString.cpp.obj	d61e5345a47ed9de
+8	1029	7318508532346655	CMakeFiles/Mystring.dir/myString.cpp.obj	d61e5345a47ed9de
+3	1030	7318508532325778	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+1031	1355	7318508538858101	Mystring.exe	2d484aea68373ee2
+3	387	7318508673932267	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+388	503	7318508675061910	Mystring.exe	2d484aea68373ee2
+3	394	7318508772365437	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+395	513	7318508773505637	Mystring.exe	2d484aea68373ee2
+3	392	7318508859727223	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+392	513	7318508860917649	Mystring.exe	2d484aea68373ee2
+3	390	7318508932600413	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+391	514	7318508933811438	Mystring.exe	2d484aea68373ee2
+3	478	7318521971174129	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+8	493	7318521971296966	CMakeFiles/Mystring.dir/myString.cpp.obj	d61e5345a47ed9de
+493	791	7318521972673925	Mystring.exe	2d484aea68373ee2
+3	442	7318522976344216	CMakeFiles/Mystring.dir/main.cpp.obj	78f9f87ceee640e4
+442	569	7318522977593127	Mystring.exe	2d484aea68373ee2
