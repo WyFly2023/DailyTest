@@ -13,7 +13,7 @@ using namespace std;
 namespace Mine {
     class myString {
     public:
-        friend ostream &operator<<(ostream &_cout, const myString &s);
+        //friend ostream &operator<<(ostream &_cout, const myString &s);
 
         myString(const char *str = "");
 
@@ -29,9 +29,9 @@ namespace Mine {
 
         typedef char *iterator;
 
-        iterator begin();
+        iterator begin() const;
 
-        iterator end();
+        iterator end() const;
 
         void reserve(size_t n);
 
@@ -41,9 +41,23 @@ namespace Mine {
 
         void insert(size_t pos, char s);
 
+        void insert(size_t pos, const char *s);
+
         void erase(size_t pos, size_t len = npos);
 
-        myString(const myString& s);
+        myString(const myString &s);
+
+        myString &operator+=(char s);
+
+        myString &operator+=(const char *s);
+
+        void swap(myString &s);
+
+        size_t find(char s, size_t pos = 0) const;
+
+        size_t find(const char *sub, size_t pos = 0) const;
+
+        void clear();
 
     private:
         char *_str;
@@ -52,6 +66,15 @@ namespace Mine {
     public:
         static const int npos;
     };
+
+    void swap(myString &s1, myString &s2);
+
+    ostream &operator<<(ostream &_cout, const myString &s);
+
+    istream &operator>>(istream &_cin, myString &s);
+
+    void getline(istream &_cin, myString &s);
 }
+
 
 #endif //MYSTRING_MYSTRING_H
