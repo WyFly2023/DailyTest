@@ -179,10 +179,29 @@ namespace Mine {
     }
 
     myString::myString(const Mine::myString &s) {
-        _str = new char[s._capacity + 1];
-        strcpy(_str, s._str);
+//        _str = new char[s._capacity + 1];
+//        strcpy(_str, s._str);
+//        _size = s._size;
+//        _capacity = s._capacity;
+        myString tmp(s._str);
+        swap(tmp);
+    }
+/*
+    myString& myString::operator=(const myString &s)  {
+        char *tmp = new char[s._capacity + 1];
+        strcpy(tmp,s._str);
+
+        delete[] _str;
+        _str = tmp;
         _size = s._size;
         _capacity = s._capacity;
+
+        return *this;
+    }
+*/
+    myString& myString::operator=(myString s){
+        swap(s);
+        return *this;
     }
 
     myString &myString::operator+=(char s) {

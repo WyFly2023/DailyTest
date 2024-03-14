@@ -47,6 +47,10 @@ namespace Mine {
 
         myString(const myString &s);
 
+        //myString& operator=(const myString &s);
+
+        myString& operator=(myString s);
+
         myString &operator+=(char s);
 
         myString &operator+=(const char *s);
@@ -60,9 +64,9 @@ namespace Mine {
         void clear();
 
     private:
-        char *_str;
-        size_t _size;
-        size_t _capacity;
+        char *_str = nullptr;
+        size_t _size = 0;
+        size_t _capacity = 0;
     public:
         static const int npos;
     };
